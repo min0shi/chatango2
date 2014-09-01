@@ -8,10 +8,7 @@
 	var tot = 0;
 	$('.menu div').each(function(){
 		$(this).css('width','auto');
-		$(this).css('padding','0 '+catpad/2+'px 0 '+catpad/2+'px');
-		tot+=parseInt($(this).css('width').split('px'))+catpad;
 	});
-	$('.menu').css('width',tot+1+'px');
 
 	str="";
 	genrelist.forEach(function(obj){str+="<div id='"+obj.id+"' class='submenuitem'>"+obj.name+"</div>";});
@@ -19,11 +16,7 @@
 	tot = 0;
 	$('.submenuitem').each(function(){
 		$(this).css('width','auto');
-		$(this).css('padding',genpad/2+'px '+genpad+'px');
-		$(this).css('margin',genpad/4+'px');
-		tot+=parseInt($(this).css('width').split('px'))+genpad*2.5;
 	});
-	$('.submenu').css('width',tot+1+'px');
 
 	$(".menuitem").hover(function () {
 		$(this).toggleClass('menuitemhover');
@@ -39,8 +32,6 @@
 			$(this).removeClass('submenuitemclicked');
 		});
 
-		//$(this).css('borderBottom','2px solid '+col);
-		//alert($(this).attr('class'));
 		if(!$(this).hasClass('menuitemclicked')){
 			$(this).toggleClass('menuitemclicked');
 		}
@@ -96,11 +87,14 @@
 	}
 	
 	$('.content').slimScroll({
-		height: $('.content').css('height'),
-		width: $('.content').css('width'),
+		height: '500px',
 		wheelStep : step
 	});
 	$('.slimScrollDiv').css(
 		"margin", "10px auto"
 	);
+	
+	$( window ).resize(function() {
+		$('.slimScrollDiv').css("width"=$(document).width()*0.9 + 'px');
+	});
 });

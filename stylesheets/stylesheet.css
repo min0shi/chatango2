@@ -4,11 +4,9 @@
 body{
 	margin: 0;
 	background: #eee;
-	overflow: hidden;
 	font-family: 'Roboto', sans-serif;
 }
 .header{
-	width: 900px;
 	margin: 0 auto;
 	padding: 20px;
 	text-align: center;
@@ -26,25 +24,22 @@ h1 p{
 	margin: 0;
 }
 .menu{
-	margin: 20px auto 10px auto;
+	margin: 10px auto 0px;
 }
 .menuitem,.submenuitem{
 	display: inline-block;
-	padding: 10px 0 10px 0;
+	padding: 10px 15px;
 	margin: 0;
-	width: 100px;
 	cursor: pointer;
 	text-transform: uppercase;
 	font-size: 10pt;
 }
 .submenu{
-	width: 900px;
 	margin: 20px auto;
 	text-align: center;
 }
 .submenuitem{
-	padding: 10px 20px;
-	margin: 10px;
+	margin: 5px;
 	background-color: #eee;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -71,12 +66,9 @@ h1 p{
 
 .content{
 	font-size: 10pt;
-	width: 750px;
-	height: 500px;
 	margin: 10px auto;
 	text-align: center;
 	padding-top: 5px;
-	/*overflow: auto;*/
 }
 .content a{
 	text-decoration: none;
