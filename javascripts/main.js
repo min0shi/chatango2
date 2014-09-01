@@ -95,6 +95,6 @@
 	);
 	
 	$( window ).resize(function() {
-		$('.slimScrollDiv').css("width"=$(document).width()*0.9 + 'px');
+		$('.slimScrollDiv').css("width",$(document).width()*0.9 + 'px');
 	});
 });
