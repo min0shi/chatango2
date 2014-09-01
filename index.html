@@ -1,79 +1,112 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Minoshi's Home</title>
+		<link type="text/css" rel="stylesheet" href="stylesheets/stylesheet.css" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="javascripts/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascripts/jquery.slimscroll.min.js"></script>
+		<script type="text/javascript" src="javascripts/main.js"></script>
+	</head>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Chatango2 : ">
+	<body>
+		<script>
+			var pageload = "Select a category to proceed";
+			var menuselect = "Select a genre to see my reommendations";
+			var nocontent = "I have nothing to recommend for this genre";
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+			var type_id="";
+			window.type_id= type_id;
 
-    <title>Chatango2</title>
-  </head>
+			var catpad = 30;
+			var categories = [
+				{"id":"kdrama", "name":"KDramas"},
+				{"id":"jdrama", "name":"JDramas"},
+				{"id":"kmovie", "name":"KMovies"},
+				{"id":"jmovie", "name":"JMovies"},
+				{"id":"otherdrama", "name":"Other Drama"}
+			];
 
-  <body>
+			var genpad = 20;
+			var genrelist = [
+				{"id":"comedy","name":"Comedy"},
+				{"id":"drama","name":"Drama"},
+				{"id":"romance","name":"Romance"},
+				{"id":"crime","name":"Crime"}
+			];
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/min0shi/chatango2">View on GitHub</a>
-
-          <h1 id="project_title">Chatango2</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/min0shi/chatango2/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/min0shi/chatango2/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Chatango2 maintained by <a href="https://github.com/min0shi">min0shi</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+			var list = {
+                "kdrama": [
+					{"title": "Roommate", "url": "http://www.drama.net/roommate", "id":"281479", "img":"images/roommate.jpg", "genre": "comedy"},
+					{"title": "Running Man", "url": "http://www.drama.net/running-man", "id": "248870", "img":"images/running-man.jpg", "genre": "comedy"},
+					{"title": "Korea Secret Agency", "url": "http://www.drama.net/korea-secret-agency", "id": "249955", "img":"images/korea-secret-agency.jpg", "genre": "comedy"},
+					{"title": "Dating Agency Cyrano", "url": "http://www.drama.net/dating-agency-cyrano", "id": "269793", "img":"images/dating-agency-cyrano.jpg", "genre": "comedy"},
+					{"title": "Super Rookie", "url": "http://www.drama.net/super-rookie", "id": "137271", "img":"images/super-rookie.jpg", "genre": "comedy"},
+					{"title": "Marriage, Not Dating", "url": "http://www.drama.net/marriage-not-dating", "id": "283458", "img":"images/marriage-not-dating.jpg", "genre": "comedy"},
+					{"title": "Brain", "url": "http://www.drama.net/brain", "id": "255021", "img":"images/brain.jpg", "genre": "drama"},
+					{"title": "Capital Scandal", "url": "http://www.drama.net/capital-scandal", "id": "96761", "img":"images/capital-scandal.jpg", "genre": "drama"},
+					{"title": "Hotel King", "url": "http://www.drama.net/hotel-king", "id": "279942", "img":"images/hotel-king.jpg", "genre": "drama"},
+					{"title": "Que Sera Sera", "url": "http://www.drama.net/que-sera-sera", "id": "244971", "img":"images/que-sera-sera.jpg", "genre": "romance"},
+					{"title": "Taereung National Village", "url": "http://www.drama.net/taereung-national-village", "id": "", "img":"images/taereung-national-village.jpg", "genre": "romance"},
+					{"title": "Air City", "url": "http://www.drama.net/air-city", "id": "219951", "img":"images/air-city.jpg", "genre": "romance"},
+					{"title": "Alone In Love", "url": "http://www.drama.net/alone-in-love", "id": "83171", "img":"images/alone-in-love.jpg", "genre": "romance"},
+					{"title": "9 End 2 Outs", "url": "http://www.drama.net/9-end-2-outs", "id": "131541", "img":"images/9-end-2-outs.jpg", "genre": "romance"},
+					{"title": "Hyena", "url": "http://www.drama.net/hyena", "id": "220081", "img":"images/hyena.jpg", "genre": "romance"},
+					{"title": "I am Sam", "url": "http://www.drama.net/i-am-sam", "id": "131591", "img":"images/i-am-sam.jpg", "genre": "romance"},
+					{"title": "Me Too, Flower!", "url": "http://www.drama.net/me-too-flower", "id": "253564", "img":"images/me-too-flower.jpg", "genre": "romance"},
+					{"title": "TEN", "url": "http://www.drama.net/special-affairs-team-ten", "id": "263829", "img":"images/special-affairs-team-ten.jpg", "genre": "crime"},
+					{"title": "Athena", "url": "http://www.drama.net/athena", "id": "212981", "img":"images/athena.jpg", "genre": "crime"},
+					{"title": "IRIS", "url": "http://www.drama.net/iris", "id": "120571", "img":"images/iris.jpg", "genre": "crime"},
+					{"title": "City Hunter", "url": "http://www.drama.net/city-hunter", "id": "249053", "img":"images/city-hunter.jpg", "genre": "crime"}
+				],
+					"jdrama": [
+					{"title": "Trick", "url": "http://www.drama.net/trick", "id": "85295", "img":"images/trick.jpg", "genre": "comedy"},
+					{"title": "Kekkon Dekinai Otoko", "url": "http://www.drama.net/kekkon-dekinai-otoko", "id": "82352", "img":"images/kekkon-dekinai-otoko.jpg", "genre": "comedy"},
+					{"title": "Hero (2011)", "url": "http://www.drama.net/hero-japan", "id": "95821", "img":"images/hero-japan.jpg", "genre": "drama"},
+					{"title": "Good Luck", "url": "http://www.drama.net/good-luck", "id": "84835", "img":"images/roommate.jpg", "genre": "drama"},
+					{"title": "Musashi", "url": "http://www.drama.net/musashi", "id": "236721", "img":"images/musashi.jpg", "genre": "drama"},
+					{"title": "Long Vacation", "url": "http://www.drama.net/long-vacation", "id": "84747", "img":"images/long-vacation.jpg", "genre": "romance"},
+					{"title": "Love Generation", "url": "http://www.drama.net/love-generation", "id": "82442", "img":"images/love-generation.jpg", "genre": "romance"},
+					{"title": "Galelio", "url": "http://www.drama.net/galileo", "id": "82440", "img":"images/galileo.jpg", "genre": "crime"},
+					{"title": "Mr. Brain", "url": "http://www.drama.net/mr-brain", "id": "105541", "img":"images/mr-brain.jpg", "genre": "crime"}
+				],
+					"kmovie": [
+					{"title": "See You After School", "url": "http://www.drama.net/see-you-after-school", "id": "", "img":"images/see-you-after-school.jpg" ,"genre": "comedy"},
+					{"title": "Bad Couple (2010)", "url": "http://www.drama.net/bad-couple-2010", "id": "", "img":"images/bad-couple-2010.jpg" , "genre": "comedy"},
+					{"title": "Baby and Me", "url": "http://www.drama.net/baby-and-me", "id": "", "img":"images/baby-and-me.jpg" , "genre": "comedy"},
+					{"title": "Marrying the Mafia 2", "url": "http://www.drama.net/marrying-the-mafia-2", "id": "", "img":"images/marrying-the-mafia-2.jpg" , "genre": "comedy"},
+					{"title": "My Boss My Hero", "url": "http://www.drama.net/my-boss-my-hero-movie", "id": "", "img":"images/my-boss-my-hero-movie.jpg" , "genre": "comedy"},
+					{"title": "My Girlfriend Is An Agent", "url": "http://www.drama.net/my-girlfriend-is-an-agent", "id": "", "img":"images/my-girlfriend-is-an-agent.jpg" , "genre": "comedy"},
+					{"title": "My Wife Is A Gangster", "url": "http://www.drama.net/my-wife-is-a-gangster", "id": "", "img":"images/my-wife-is-a-gangster.jpg" , "genre": "comedy"},
+					{"title": "Sex Is Zero", "url": "http://www.drama.net/sex-is-zero", "id": "", "img":"images/sex-is-zero.jpg" , "genre": "comedy"},
+					{"title": "The Art Of Seduction", "url": "http://www.drama.net/the-art-of-seduction", "id": "", "img":"images/the-art-of-seduction.jpg" , "genre": "comedy"},
+					{"title": "Hot Young Bloods (2013)", "url": "http://www.drama.net/hot-young-bloods-2013", "id": "", "img":"images/hot-young-bloods.jpg" , "genre": "romance"},
+					{"title": "Changing Partners", "url": "http://www.drama.net/changing-partners", "id": "", "img":"images/changing-partners.jpg" , "genre": "romance"},
+					{"title": "Once in a Summer", "url": "http://www.drama.net/once-in-a-summer", "id": "", "img":"images/once-in-a-summer.jpg" , "genre": "romance"},
+					{"title": "A Bittersweet Life", "url": "http://www.drama.net/a-bittersweet-life", "id": "", "img":"images/a-bittersweet-life.jpg" , "genre": "crime"},
+					{"title": "Old Boy", "url": "http://www.drama.net/old-boy", "id": "", "img":"images/old-boy.jpg" , "genre": "crime"},
+					{"title": "Going by the Book", "url": "http://www.drama.net/going-by-the-book", "id": "", "img":"images/going-by-the-book.jpg" , "genre": "crime"}
+				],
+					"jmovie": [
+					{"title": "GTO (1999)", "url": "http://www.drama.net/great-teacher-onizuka-live-action", "id": "", "img":"images/great-teacher-onizuka.jpg" , "genre": "comedy"},
+					{"title": "Rurouni Kenshin (2012)", "url": "http://www.drama.net/rurouni-kenshin", "id": "", "img":"images/rurouni-kenshin.jpg" , "genre": "drama"},
+					{"title": "Brain Man", "url": "http://www.drama.net", "id": "", "img":"images/brain-man.jpg" , "genre": "crime"}
+				]
+			};
+		</script>
+	
+		<div class="header">
+			<h1>Minoshi</h1>
+			<div class="menu"></div>
+		</div>
+		
+		<div class="submenu"></div>
+		
+		<div class="content"></div>
+		
+		<div class="footer">
+			<p>&copy; Minoshi 2014</p> <a href="https://github.com/min0shi/chatango2" target="_blank">Download</a>
+		</div>
+	</body>
 </html>
