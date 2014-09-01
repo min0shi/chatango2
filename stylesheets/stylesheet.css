@@ -83,6 +83,9 @@ h1 p{
 	padding: 10px 20px;
 	text-align: center;
 	color: #000;
+	height: 330px;
+	width: 200px;
+	vertical-align: top;
 }
 .content a img{
 	height: 300px;

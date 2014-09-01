@@ -65,13 +65,18 @@
 			var poster = "";
 			list[type_id].forEach(function(obj){
 				if(obj.genre==id){
-					txt+="<a href='"+obj.url+"'target='_blank'><img src='"+obj.img+"'/><br/>"+obj.title+"<br></a>";
+					var u = obj.url;
+					if(u==""){
+						u = "https://www.google.com/#q="+obj.title;
+					}
+					txt+="<a href='"+u+"'target='_blank'><img src='"+obj.img+"'/><br/>"+obj.title+"<br></a>";
 					$('.content').html(txt);
 				}
 			});
 		} else{
 			$('.content').html(pageload);
 		}
+		$('.content').slimScroll({ scrollTo : '0px' });
 	});
 
 	$('.header h1').click(function(){
