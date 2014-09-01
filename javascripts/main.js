@@ -94,10 +94,10 @@
 	if(navigator.userAgent.match(/Firefox/)!=null){
 		step=1;
 	}
-	console.log(step);
+	
 	$('.content').slimScroll({
-		height: '500px',
-		width: '720px',
+		height: $('.content').css('height'),
+		width: $('.content').css('width'),
 		wheelStep : step
 	});
 	$('.slimScrollDiv').css(
