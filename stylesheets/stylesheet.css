@@ -69,6 +69,8 @@ h1 p{
 	margin: 10px auto;
 	text-align: center;
 	padding-top: 5px;
+	padding-bottom: 10px;
+	max-width: 750px;
 }
 .content a{
 	text-decoration: none;
@@ -94,6 +96,13 @@ h1 p{
 .content a img{
 	height: 300px;
 	width: 200px;
+}
+.slimScrollDiv{
+	max-width: 850px;
+	border-bottom-width: 3px;
+	border-bottom-style: solid; 
+	border-image:radial-gradient(black 50%,rgba(255,255,255,0)) 0 0 3 0 stretch;
+	padding-bottom: 20px;
 }
 
 .footer {
