@@ -1,5 +1,6 @@
 Put the following code in your chatango profile.
 
+```html
 <style>
     body,
     h1,
@@ -30,3 +31,4 @@ Put the following code in your chatango profile.
 </style>
 <iframe src="link to your page">
 </iframe>
+```
