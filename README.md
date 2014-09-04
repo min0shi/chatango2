@@ -32,3 +32,5 @@ Put the following code in your chatango profile.
 <iframe src="link to your page">
 </iframe>
 ```
+
+See the page in action [here](http://min0shi.github.io/chatango2/)
